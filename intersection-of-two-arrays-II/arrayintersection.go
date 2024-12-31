@@ -32,11 +32,26 @@ func intersect(nums1 []int, nums2 []int) []int {
 	return res
 }
 
-func min(left, right int) int {
-	if left < right {
-		return left
+func min(i ...int) int {
+	switch len(i) {
+	case 0:
+		return 0
+	case 1:
+		return i[0]
+	case 2:
+		if i[0] < i[1] {
+			return i[0]
+		}
+		return i[1]
 	}
-	return right
+
+	var m int = i[0]
+	for _, n := range i {
+		if n < m {
+			m = n
+		}
+	}
+	return m
 }
 
 func max[T int](left, right T) T {
